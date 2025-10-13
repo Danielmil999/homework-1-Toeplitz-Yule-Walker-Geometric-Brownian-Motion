@@ -1,0 +1,85 @@
+---
+title: "Homework 1 – Geometric Brownian Motion Simulation"
+format: html
+execute:
+  error: true
+---
+
+```{r}
+# ----------------------------------------------------------
+# Simulation of a Geometric Brownian Motion (GBM)
+# ----------------------------------------------------------
+
+# Parameters
+T <- 1        # total time (0 to T)
+c <- 1        # drift rate
+sigma <- 0.1  # volatility
+tau <- 0.001  # time step
+N_t <- ceiling(T / tau) + 1  # number of time points
+N <- 100000   # number of simulated trajectories
+u <- 2.5      # threshold
+set.seed(1)   # make the results reproducible
+
+# Create a matrix to store all trajectories
+S <- matrix(NA, nrow = N, ncol = N_t)
+
+# Variable to count how many trajectories exceed threshold
+prob <- 0
+step <- 1 / N  # each trajectory contributes equally
+
+# Main simulation
+for (j in 1:N) {
+  S[j, 1] <- 1   # starting value S0 = 1
+  x <- rnorm(n = N_t - 1, mean = 0, sd = sqrt(tau))  # random normal steps
+  crossed <- FALSE
+
+  for (i in 2:N_t) {
+    S[j, i] <- S[j, i - 1] + c * S[j, i - 1] * tau + sigma * S[j, i - 1] * x[i - 1]
+
+    if (!crossed && S[j, i] > u) {
+      crossed <- TRUE
+      prob <- prob + step
+    }
+  }
+}
+
+cat("Estimated ruin probability =", prob, "\n")
+```
+
+```{r}
+# ----------------------------------------------------------
+# Plot 10 random trajectories with the threshold line
+# ----------------------------------------------------------
+
+library(ggplot2)
+
+# Randomly pick 10 trajectories
+sam <- sample(1:N, size = 10, replace = FALSE)
+S_sampled <- S[sam, ]
+time <- seq(0, T, length.out = N_t)
+
+# Create data frame for ggplot
+df <- data.frame(
+  time = rep(time, times = 10),
+  value = as.vector(t(S_sampled)),
+  path_ID = rep(as.factor(sam), each = N_t)
+)
+
+ggplot(df, aes(x = time, y = value, color = path_ID)) +
+  geom_line() +
+  geom_hline(yintercept = u, color = "red", linetype = "dashed") +
+  labs(
+    title = "10 Random Geometric Brownian Motion Trajectories",
+    x = "Time",
+    y = "Stock Price"
+  ) +
+  theme_minimal()
+```
+
+#Interpretation:
+#The simulation models 100 000 possible price paths for a stock following a Geometric Brownian Motion with drift = 1 and volatility = 0.1 over T = 1.
+#The estimated ruin probability (the chance that the price exceeds u = 2.5 at least once) is ≈ 0.79.
+#This high value is consistent with the positive drift and low volatility, meaning the process often grows above the threshold before time T.
+---
+
+## 
