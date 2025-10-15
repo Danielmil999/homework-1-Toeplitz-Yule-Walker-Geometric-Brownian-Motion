@@ -1,8 +1,3 @@
-#| echo: true
-#| warning: false
-#| message: false
-#| fig-cap: "Comparison of custom vs scipy Toeplitz matrix"
-
 import numpy as np
 from scipy.linalg import toeplitz
 import timeit
@@ -24,12 +19,13 @@ def toeplitz_matrix(dim, seq, verbose=True):
     if dim > len(seq):
         if verbose: print(f"❌ Error: 'dim' cannot exceed length of 'seq' ({len(seq)}).")
         return None
-    
+
     T = np.zeros((dim, dim))
     for i in range(dim):
         for j in range(dim):
             T[i, j] = seq[dim - 1 + i - j]
     return T
+
 
 # Example comparison
 dim = 4
@@ -37,7 +33,7 @@ seq = list(range(1, 8))
 custom_T = toeplitz_matrix(dim, seq)
 scipy_T = toeplitz(range(4, 8), range(4, 0, -1))
 print("Custom Toeplitz:\n", custom_T)
-print("Scipy Toeplitz:\n", scipy_T)
+print("SciPy Toeplitz:\n", scipy_T)
 
 # ----------------------
 # 2. Timing comparison
