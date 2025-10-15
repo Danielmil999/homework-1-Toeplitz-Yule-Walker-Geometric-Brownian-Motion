@@ -4,7 +4,7 @@ This repository contains my solutions to Homework 1. It includes **Python** code
 
 ---
 
-## ✅ Assignment checklist (how this repo meets requirements)
+## Assignment checklist 
 
 - **Clear commit messages** — used throughout (e.g., “Add Toeplitz manual implementation”, “Fix GBM loop indexing”).
 - **One issue with TODO list** — created in the Issues tab.
@@ -19,7 +19,7 @@ This repository contains my solutions to Homework 1. It includes **Python** code
 
 ---
 
-## 📦 Repository structure (what each file/folder means)
+## Repository structure (what each file/folder means)
 
 .
 ├─ README.md # You are here: overview + how to run
@@ -120,14 +120,14 @@ yaml
 Copier le code
 execute:
   error: true
-🧪 Reproducibility notes
+Reproducibility notes
 Randomness: Both Python and R examples set seeds where relevant (np.random.seed / set.seed) to make results reproducible.
 
 Input file: vector.csv is used by the Yule–Walker section; keep it in the repo root.
 
 Performance prints: toeplitz_matrix(..., verbose=False) is used in benchmarks to suppress messages.
 
-🧩 Theory pointers (brief)
+Theory pointers (brief)
 Toeplitz minimum dimension vs sequence length:
 For the manual construction using a single sequence that fills all needed diagonals, we require
 dim ≤ len(seq)
@@ -136,7 +136,7 @@ so that every T[i, j] = seq[dim - 1 + i - j] is defined for all 0 ≤ i, j < dim
 Yule–Walker:
 Constructs a Toeplitz autocorrelation matrix R from r(k) and solves R Φ = r for AR(p) parameters Φ, with innovation std σ = sqrt(γ(0) − Φᵀ r).
 
-🧹 Clean repo policy
+Clean repo policy
 .gitignore excludes __pycache__/, *.pyc, .Rhistory, Quarto cache dirs (*_files/), and system files (e.g., .DS_Store).
 
 Only relevant code, data (vector.csv), and rendered outputs are committed.
@@ -152,14 +152,14 @@ Documentation & cleanup: hh:mm
 
 (Replace with your actual times.)
 
-🧑‍💻 Environment (for graders)
+Environment (for graders)
 macOS / Python 3.12+ / R 4.3+ / Quarto 1.5+
 
 Python libs: numpy, scipy, statsmodels
 
 R libs: ggplot2
 
-📝 Notes for the graders
+Notes for the graders
 The PR from dev → main documents the change history.
 
 The issue titled “TODO: finalize benchmarks & README” tracks the checklist and is closed on completion.
