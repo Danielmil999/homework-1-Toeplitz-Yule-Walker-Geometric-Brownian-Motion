@@ -41,7 +41,7 @@ Copier le code
 
 ---
 
-## 🧰 Setup
+## Setup
 
 ### 1) Install Quarto (for rendering `.qmd`)
 - Download: https://quarto.org/docs/get-started/
@@ -68,7 +68,7 @@ Copier le code
 install.packages("ggplot2")
 If you render Quarto from the terminal, make sure R is installed and on your PATH.
 
-▶️ How to run everything (step-by-step)
+How to run everything (step-by-step)
 A) Python script: Toeplitz + timings
 From the repo folder:
 
