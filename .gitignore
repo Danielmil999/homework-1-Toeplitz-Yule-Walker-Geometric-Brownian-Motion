@@ -1,0 +1,21 @@
+# -------- Python --------
+__pycache__/
+*.pyc
+
+# -------- R --------
+.Rhistory
+.RData
+.Rproj.user/
+
+# -------- Quarto / knitr (keep rendered outputs! ) --------
+# If you render self-contained HTML, you may ignore *_files/ (see note below).
+.quarto/
+_cache/
+*.log
+
+# -------- Jupyter (if any) --------
+.ipynb_checkpoints/
+
+# -------- macOS / editors --------
+.DS_Store
+.vscode/
