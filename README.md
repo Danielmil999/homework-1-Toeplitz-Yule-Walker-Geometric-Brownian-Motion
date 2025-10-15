@@ -143,7 +143,7 @@ Only relevant code, data (vector.csv), and rendered outputs are committed.
 
 All issues are closed and auxiliary branches deleted before submission.
 
-⏱ Time spent (approx.)
+Time spent (approx.)
 Exercise 1 (Toeplitz + Yule–Walker): hh:mm
 
 Exercise 2 (GBM ruin probability in R): hh:mm
